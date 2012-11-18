@@ -1,6 +1,5 @@
 package com.example.listviewdemo;
 
-import java.util.ArrayList;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 
 public class taskListAdapter extends BaseAdapter
 {
-	ArrayList<TaskItem> myList;
+	TaskArry myList;
 	private LayoutInflater l_Inflater;
 	
 	static class ViewHolder 
@@ -20,22 +19,27 @@ public class taskListAdapter extends BaseAdapter
 		  TextView txt_taskDescription;
 	}
 	
-	public taskListAdapter(Context context, ArrayList<TaskItem> results) 
+	public taskListAdapter(Context context, TaskArry task_details) 
 	{
 		
-		myList = results;
+		myList = task_details;
 		l_Inflater = LayoutInflater.from(context);
 		
 	}
 	
+	public void addItem(TaskItem obj)
+	{
+		myList.addItem(obj);
+	}
+	
 	public int getCount()
 	{
-		return myList.size();
+		return myList.getSize();
 	}
 
 	public TaskItem getItem(int index)
 	{
-		return myList.get(index);
+		return myList.getItem(index);
 	}
 
 	public long getItemId(int index)
@@ -59,8 +63,8 @@ public class taskListAdapter extends BaseAdapter
 			  holder = (ViewHolder) convertView.getTag();
 		  }
 	   
-		  holder.txt_taskName.setText(myList.get(position).getTaskName());
-		  holder.txt_taskDescription.setText(myList.get(position).getTaskDescription());
+		  holder.txt_taskName.setText(myList.getItem(position).getTaskName());
+		  holder.txt_taskDescription.setText(myList.getItem(position).getTaskDescription());
 		  return convertView;
 	
 	}

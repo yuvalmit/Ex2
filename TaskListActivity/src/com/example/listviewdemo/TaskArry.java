@@ -4,18 +4,17 @@ import java.util.ArrayList;
 
 public class TaskArry
 {
-	private static TaskArry instance = null;
-	private static ArrayList<TaskItem> theList;
+	private static TaskArry instance ;
+	private ArrayList<TaskItem> theList = new ArrayList<TaskItem>();
 
 	private TaskArry()
 	{
-		theList = new ArrayList<TaskItem>();
-		
+
 	}
 
-	public TaskArry getInstance()
+	public static TaskArry getInstance()
 	{
-		if(instance != null)
+		if(instance == null)
 		{
 			instance = new TaskArry();
 		}
@@ -25,6 +24,11 @@ public class TaskArry
 	public void addItem(String name, String dis)
 	{
 		theList.add(new TaskItem(name,dis));
+	}
+	
+	public void addItem(TaskItem obj)
+	{
+		theList.add(new TaskItem(obj));
 	}
 	
 	public TaskItem getItem(int index)

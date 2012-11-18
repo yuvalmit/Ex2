@@ -11,6 +11,12 @@ public class TaskItem
 		setTaskDescription(dis);
 		
 	}
+	public TaskItem(TaskItem obj)
+	{	
+		setTaskName(obj.getTaskName());
+		setTaskDescription(obj.getTaskDescription());
+		
+	}
 
 	public TaskItem() {}
 
