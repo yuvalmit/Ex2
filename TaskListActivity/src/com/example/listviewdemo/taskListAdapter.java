@@ -1,12 +1,16 @@
 package com.example.listviewdemo;
 
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+
 
 public class taskListAdapter extends BaseAdapter
 {
@@ -17,12 +21,15 @@ public class taskListAdapter extends BaseAdapter
 	{
 		  TextView txt_taskName;
 		  TextView txt_taskDescription;
+		  TextView txt_taskDateCreate;
+		  Button delTask;
 	}
 	
 	public taskListAdapter(Context context, TaskArry task_details) 
 	{
 		
 		myList = task_details;
+		myList.sortByDate(1);
 		l_Inflater = LayoutInflater.from(context);
 		
 	}
@@ -47,15 +54,19 @@ public class taskListAdapter extends BaseAdapter
 		return index;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent)
+	public View getView(final int position, View convertView, ViewGroup parent)
 	{
-		ViewHolder holder;
+		final ViewHolder holder;
+		
 		  if (convertView == null) 
 		  {
 		   convertView = l_Inflater.inflate(R.layout.activity_task_list, null);
 		   holder = new ViewHolder();
 		   holder.txt_taskName = (TextView) convertView.findViewById(R.id.name);
 		   holder.txt_taskDescription = (TextView) convertView.findViewById(R.id.dis);
+		   holder.txt_taskDateCreate = (TextView) convertView.findViewById(R.id.date);
+		   holder.delTask = (Button) convertView.findViewById(R.id.delTask);
+		   
 		   convertView.setTag(holder);
 		  } 
 		  else 
@@ -65,6 +76,18 @@ public class taskListAdapter extends BaseAdapter
 	   
 		  holder.txt_taskName.setText(myList.getItem(position).getTaskName());
 		  holder.txt_taskDescription.setText(myList.getItem(position).getTaskDescription());
+		  holder.txt_taskDateCreate.setText(myList.getItem(position).getTaskCreateDate().toString());
+		  //holder.delTask.setVisibility(View.INVISIBLE);
+		  holder.delTask.setOnClickListener(new OnClickListener()
+		  {
+			public void onClick(View v) 
+			{
+				myList.delItem(position);
+				notifyDataSetChanged();
+
+			}
+		});
+		 
 		  return convertView;
 	
 	}

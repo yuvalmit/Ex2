@@ -16,15 +16,20 @@
 	<TextView
 	    android:id="@+id/dis"
 	    android:layout_width="wrap_content"
-	    android:layout_height="50dp"
+	    android:layout_height="30dp"
 	    android:layout_below="@id/name" />
-
-	<CheckBox
-	    android:id="@+id/checkBox1"
+	
+	<TextView
+	    android:id="@+id/date"
 	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignBottom="@+id/name"
-	    android:layout_alignParentRight="true"
-	    android:text="" />
+	    android:layout_height="20dp"
+	    android:layout_below="@id/dis" />
+	
+	<Button 
+	 	android:id="@+id/delTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/date"
+        android:text="@string/delTask" />
 
 </RelativeLayout>

@@ -13,5 +13,6 @@
     <string name="removebutton">Remove selected</string>
     <string name="tashnamehint">Task name</string>
     <string name="taskdischint">Task discription</string>
+    <string name="delTask">Delete</string>
 
 </resources>
